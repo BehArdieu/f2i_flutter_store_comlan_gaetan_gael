@@ -1,5 +1,6 @@
 // import des packages
 // bibliothèque material : bibliothèque de design de google
+import 'package:f2i_flutter_store_comlan_gaetan_gael/providers/category_provider.dart';
 import 'package:f2i_flutter_store_comlan_gaetan_gael/providers/cart_provider.dart';
 import 'package:f2i_flutter_store_comlan_gaetan_gael/providers/product_provider.dart';
 import 'package:f2i_flutter_store_comlan_gaetan_gael/services/router_service.dart';
@@ -15,6 +16,7 @@ void main() => runApp(
             create: (context) => ProductProvider(),
           ),
           ChangeNotifierProvider(
+            create: (context) => CategoryProvider(),
             create: (context) => CartProvider(),
           ),
         ],
