@@ -17,6 +17,8 @@ void main() => runApp(
           ),
           ChangeNotifierProvider(
             create: (context) => CategoryProvider(),
+          ),
+          ChangeNotifierProvider(
             create: (context) => CartProvider(),
           ),
         ],
