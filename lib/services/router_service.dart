@@ -1,3 +1,4 @@
+import 'package:f2i_flutter_store_comlan_gaetan_gael/screens/cart_screen.dart';
 import 'package:f2i_flutter_store_comlan_gaetan_gael/screens/home_screen.dart';
 import 'package:f2i_flutter_store_comlan_gaetan_gael/screens/product_details_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -23,6 +24,11 @@ class RouterService {
           path: '/product-details',
           name: 'product-details',
           builder: (context, state) => const ProductDetailsScreen(),
+        ),
+        GoRoute(
+          path: '/cart',
+          name: 'cart',
+          builder: (context, state) => const CartScreen(),
         ),
       ],
     );
