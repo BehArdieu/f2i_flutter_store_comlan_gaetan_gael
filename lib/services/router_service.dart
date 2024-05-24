@@ -1,3 +1,4 @@
+import 'package:f2i_flutter_store_comlan_gaetan_gael/screens/cart_screen.dart';
 import 'package:f2i_flutter_store_comlan_gaetan_gael/screens/home_screen.dart';
 import 'package:f2i_flutter_store_comlan_gaetan_gael/screens/product_category_screen.dart';
 import 'package:f2i_flutter_store_comlan_gaetan_gael/screens/product_details_screen.dart';
@@ -29,6 +30,11 @@ class RouterService {
           path: '/category',
           name: 'category',
           builder: (context, state) => const ProductCategoryScreen(),
+        ),
+        GoRoute(
+          path: '/cart',
+          name: 'cart',
+          builder: (context, state) => const CartScreen(),
         ),
       ],
     );
