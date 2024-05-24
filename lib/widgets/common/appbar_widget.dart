@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
-  const AppbarWidget({super.key});
+
+  final bool isDetailPage;
+
+
+  const AppbarWidget({super.key, this.isDetailPage = false});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +40,7 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
         ),
         IconButton(
           onPressed: () {
-            context.pushNamed('cart');
+            isDetailPage ? context.pushReplacementNamed('cart') : context.pushNamed('cart');
           },
           icon: const Icon(Icons.shopping_cart),
         ),
