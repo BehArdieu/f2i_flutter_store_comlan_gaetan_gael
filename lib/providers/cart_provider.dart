@@ -15,4 +15,25 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  //Supprimer un produit du panier
+  void removeProduct(Product product) {
+    _products.remove(product);
+    notifyListeners();
+  }
+
+  //Vider le panier
+  void clear() {
+    _products.clear();
+    notifyListeners();
+  }
+
+  //Calculer le total du panier
+  double getTotal() {
+    double total = 0;
+    for (var product in _products) {
+      total += product.price;
+    }
+    return total;
+  }
+
 }
