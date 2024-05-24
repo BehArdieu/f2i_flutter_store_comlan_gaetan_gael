@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
     */
     return Scaffold(
       appBar: const AppbarWidget(),
-      drawer: const DrawerWidget(),
+      drawer: DrawerWidget(),
       body: SingleChildScrollView(
         child: Column(
           children: [

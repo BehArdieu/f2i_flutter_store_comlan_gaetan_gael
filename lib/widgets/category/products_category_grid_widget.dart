@@ -1,18 +1,19 @@
-import 'dart:developer';
-
 import 'package:f2i_flutter_store_comlan_gaetan_gael/models/product.dart';
+import 'package:f2i_flutter_store_comlan_gaetan_gael/providers/category_provider.dart';
 import 'package:f2i_flutter_store_comlan_gaetan_gael/services/products_service.dart';
 import 'package:f2i_flutter_store_comlan_gaetan_gael/widgets/common/product_item_grid.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class ProductsGridWidget extends StatelessWidget {
-  ProductsGridWidget({super.key});
+class ProductsCategoryGridWidget extends StatelessWidget {
+  ProductsCategoryGridWidget({super.key});
 
   // instancier le service
   final ProductsService _productsService = ProductsService();
 
   @override
   Widget build(BuildContext context) {
+    String? category = context.watch<CategoryProvider>().category;
     // inspect(_productsService.getProducts());
 
     /*
@@ -21,8 +22,12 @@ class ProductsGridWidget extends StatelessWidget {
         builder : permet de boucler sur les résultats renvoyés pas la future
           > paramètre snapshot contient les données de la future
     */
+    if (category == null) {
+      return const Text('vous n\'avez pas sélectionné de catégorie');
+    }
+
     return FutureBuilder(
-      future: _productsService.getProducts(),
+      future: _productsService.getProductsByCategory(category),
       builder: (context, snapshot) {
         // si les données sont accessibles
         if (snapshot.hasData) {
@@ -40,9 +45,9 @@ class ProductsGridWidget extends StatelessWidget {
             padding: const EdgeInsets.all(15),
             child: Column(
               children: [
-                const Text(
-                  'Our products',
-                  style: TextStyle(
+                Text(
+                  category,
+                  style: const TextStyle(
                     fontSize: 30,
                   ),
                 ),
