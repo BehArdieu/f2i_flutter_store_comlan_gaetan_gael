@@ -1,7 +1,6 @@
-import 'package:f2i_flutter_store_comlan_gaetan_gael/models/product.dart';
-import 'package:f2i_flutter_store_comlan_gaetan_gael/providers/product_provider.dart';
+import 'package:f2i_flutter_store_comlan_gaetan_gael/providers/cart_provider.dart';
+import 'package:f2i_flutter_store_comlan_gaetan_gael/widgets/cart/empty_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:provider/provider.dart';
 
 
@@ -11,40 +10,24 @@ class CartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // watch (getter) : accéder au product stocké dans ProductProvider
-    Product? product = context.watch<ProductProvider>().product;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Container(
-          height: 300,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.contain,
-              image: NetworkImage(
-                product!.image,
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        Text(
-          product.title,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 25,
-          ),
-        ),
-        Text(
-          '${product.price.toStringAsFixed(2)}€',
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 20,
-          ),
-        ),
-      ],
+
+  return Consumer<CartProvider>(
+      builder: (context, cart, child) {
+        if (cart.products?.isEmpty ?? true) {
+            return EmptyWidget();
+        } else {
+          return ListView.builder(
+            itemCount: cart.products.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(cart.products[index].title),
+                subtitle: Text('Price: ${cart.products[index].price}'),
+              );
+            },
+        );
+        }
+      },
     );
   }
 }
